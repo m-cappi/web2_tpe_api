@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.3.0-dev+20221014.c92621d023
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2022 at 04:49 AM
+-- Generation Time: Nov 14, 2022 at 03:03 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.4
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -92,6 +92,42 @@ INSERT INTO `books` (`id`, `title`, `genre`, `FK_author_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE `reviews` (
+  `id` int(11) NOT NULL,
+  `bookId` int(11) NOT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `rating` enum('1','2','3','4','5') NOT NULL,
+  `comments` varchar(280) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- RELATIONSHIPS FOR TABLE `reviews`:
+--   `bookId`
+--       `books` -> `id`
+--   `userId`
+--       `users` -> `id`
+--
+
+--
+-- Truncate table before insert `reviews`
+--
+
+TRUNCATE TABLE `reviews`;
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `bookId`, `userId`, `rating`, `comments`) VALUES
+(2, 1, NULL, '5', 'Una verdadera obra literaria, gran inspiracion! Miau!\r\n-Lumiere'),
+(3, 2, 3, '4', 'Nos ha pasado a todos');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -140,6 +176,14 @@ ALTER TABLE `books`
   ADD KEY `FK_author_id` (`FK_author_id`);
 
 --
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bookId` (`bookId`),
+  ADD KEY `userId` (`userId`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -154,13 +198,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -177,6 +227,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `books`
   ADD CONSTRAINT `books_ibfk_1` FOREIGN KEY (`FK_author_id`) REFERENCES `authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`bookId`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
