@@ -5,6 +5,8 @@ require_once("./Router.php");
 require_once("../controller/index.php");
 
 $r = new Router();
+$r->addRoute("reviews", "GET", "ReviewsApiController", "listAll");
+$r->addRoute("reviews/:bookId", "GET", "ReviewsApiController", "listByBookId");
 
 
 

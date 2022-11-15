@@ -21,7 +21,7 @@ abstract Class Model{
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-    
+
     public function deleteById($id){
         $query = $this->db->prepare("DELETE FROM `{$this->tableName}` WHERE `id` = ?");
         $query->execute(array($id));

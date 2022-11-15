@@ -19,4 +19,10 @@ abstract Class ApiController{
         // devuelve el request body como objeto
         return json_decode($this->data);
     }
+
+    public function validateToken(){
+        // OPC: TOKEN REQ
+
+
+    }
 }
