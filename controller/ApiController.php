@@ -22,7 +22,6 @@ abstract Class ApiController{
 
     public function validateToken(){
         // OPC: TOKEN REQ
-
-
+        // die() si no pasa la validacion
     }
 }

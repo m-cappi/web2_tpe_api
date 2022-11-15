@@ -1,13 +1,15 @@
 <?php
 
 Class ApiView{
+    public function __construct(){}
+
     public function response($data, $statusCode){
         header("Content-Type: application/json");
-        header("HTTP/1.1 "+$statusCode+" " + $this->getStatusDescription($statusCode));
+        header("HTTP/1.1 " . $statusCode . " " . $this->getStatusDescription($statusCode));
         echo json_encode($data);
     }
 
-    public function getStatusDescription($statusCode){
+    private function getStatusDescription($statusCode){
         $possibleStatus = array(
             200 => "OK",
             201=>"Created",
