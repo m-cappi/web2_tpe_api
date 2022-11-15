@@ -1,4 +1,5 @@
 # API Rest
+[Postman documentation](https://www.getpostman.com/collections/bdeb373f133f2ba7cfce) [[JSON file](./Web2TPE_API.postman_collection.json)]
 
 ---
 
@@ -13,7 +14,7 @@ RETURNS:
 
 ---
 
-## List all by book id
+## List all by bookId
 
 URL: `GET /web2_tpe_api/reviews/:bookId`
 
@@ -24,7 +25,7 @@ RETURNS:
 
 **Los siguientes filtros se le pueden aplicar conjuntamente o por separado:**
 
-### Sorted By
+### Sorted by
 
 > Existe un ordenado por defecto segun reviewId ASC
 
@@ -49,7 +50,7 @@ RETURNS:
 -   **204**: `null`
 -   **400**: `<error message>`
 
-### Filtered By
+### Filtered by
 
 > No aplica un comportamiento por defecto
 
@@ -77,7 +78,7 @@ RETURNS:
 
 ### Pagination
 
-> Existe un paginado por defecto de los 100 primeros resultados.
+> Existe un paginado por defecto de los 100 primeros resultados segun el reviewId.
 
 URL: `GET /web2_tpe_api/reviews/:bookId?amount=<integer?>&nPage=<integer?>`
 > Ej: `/web2_tpe_api/reviews/1?amount=2&nPage=1`
@@ -89,7 +90,7 @@ RETURNS:
 
 ---
 
-## Get by id
+## Get by Id
 
 URL: `GET /web2_tpe_api/review/:id`
 

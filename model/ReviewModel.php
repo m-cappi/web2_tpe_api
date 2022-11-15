@@ -1,7 +1,7 @@
 <?php
 
 require_once('../model/Model.php');
-
+require_once("../utils/Debug.php");
 Class ReviewModel extends Model{
     public function __construct()
     {
@@ -18,6 +18,7 @@ Class ReviewModel extends Model{
     // LIMIT 1 OFFSET 0
 
     public function listByBookIdSortedByFilteredBy($bookId, $sortCriteria, $sortDirection, $amount, $offset, $filterCriteria, $filterValue){
+        $filterValue = "%".$filterValue."%";
         $query = $this->db->prepare("SELECT R.*, 
         B.title as `bookTile`, 
         A.name as `authorName`, 
@@ -31,15 +32,13 @@ Class ReviewModel extends Model{
         LEFT JOIN `users` AS U 
             ON R.userId = U.id 
         WHERE R.bookId = :bookId 
-            AND :filterCriteria LIKE :filterValue
-        ORDER BY :sortDirection :sortCriteria 
-        LIMIT :amount OFFSET :offset"
+            AND $filterCriteria LIKE :filterValue
+        ORDER BY $sortCriteria $sortDirection
+        LIMIT :amount OFFSET :offset
+        "
         );
         $query->bindParam('bookId', $bookId);
-        $query->bindParam('filterCriteria', $filterCriteria, PDO::PARAM_STMT);
-        $query->bindParam('filterValue', $filterValue);
-        $query->bindParam('sortDirection', $sortDirection);
-        $query->bindParam('sortCriteria', $sortCriteria);
+       $query->bindParam('filterValue', $filterValue, PDO::PARAM_STR_CHAR);
         $query->bindParam('amount', $amount, PDO::PARAM_INT);
         $query->bindParam('offset', $offset, PDO::PARAM_INT);
         $query->execute();
@@ -60,12 +59,10 @@ Class ReviewModel extends Model{
         LEFT JOIN `users` AS U 
             ON R.userId = U.id 
         WHERE R.bookId = :bookId 
-        ORDER BY :sortDirection :sortCriteria 
+        ORDER BY $sortCriteria $sortDirection
         LIMIT :amount OFFSET :offset"
         );
         $query->bindParam('bookId', $bookId);
-        $query->bindParam('sortDirection', $sortDirection);
-        $query->bindParam('sortCriteria', $sortCriteria);
         $query->bindParam('amount', $amount, PDO::PARAM_INT);
         $query->bindParam('offset', $offset, PDO::PARAM_INT);
         $query->execute(); 

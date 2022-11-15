@@ -1,6 +1,7 @@
 <?php
 require_once("../controller/ApiController.php");
 require_once("../model/ReviewModel.php");
+require_once("../utils/Debug.php");
 
 Class ReviewsApiController extends ApiController{
     public function __construct()
@@ -68,7 +69,7 @@ Class ReviewsApiController extends ApiController{
 
         $res = $this->model->getById($reviewId);
 
-        if(empty($review)){
+        if(empty($res)){
             $statusCode = 404;
             $res = "There's no review with id=$reviewId";
         }else{
