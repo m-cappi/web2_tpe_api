@@ -1,4 +1,5 @@
 # API Rest
+
 [Postman documentation](https://www.getpostman.com/collections/bdeb373f133f2ba7cfce) [[JSON file](./Web2TPE_API.postman_collection.json)]
 
 ---
@@ -55,6 +56,7 @@ RETURNS:
 > No aplica un comportamiento por defecto
 
 URL: `GET /web2_tpe_api/reviews/:bookId?filterCriteria=<enum>&filterValue=<any>`
+
 > Ej: `/web2_tpe_api/reviews/1?filterCriteria=authorId&filterValue=co`
 
 `filterCriteria` valores posibles:
@@ -81,6 +83,7 @@ RETURNS:
 > Existe un paginado por defecto de los 100 primeros resultados segun el reviewId.
 
 URL: `GET /web2_tpe_api/reviews/:bookId?amount=<integer?>&nPage=<integer?>`
+
 > Ej: `/web2_tpe_api/reviews/1?amount=2&nPage=1`
 
 RETURNS:
@@ -106,13 +109,14 @@ RETURNS:
 URL: `POST /web2_tpe_api/review`
 
 RECEIVES:
-- CONTENT-TYPE: `application/json`
 
-- BODY:
-  - `comment`: varchar(280) NOT NULL
-  - `rating`: enum('1','2','3','4','5') NOT NULL
-  - `bookId`: int(11) NOT NULL
-  - `userId`: int(11) NOT NULL
+-   CONTENT-TYPE: `application/json`
+
+-   BODY:
+    -   `comment`: varchar(280) NOT NULL
+    -   `rating`: enum('1','2','3','4','5') NOT NULL
+    -   `bookId`: int(11) NOT NULL
+    -   `userId`: int(11) NOT NULL
 
 RETURNS:
 

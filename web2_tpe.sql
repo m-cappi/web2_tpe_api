@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2022 at 03:03 PM
+-- Generation Time: Nov 15, 2022 at 11:41 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -123,7 +123,19 @@ TRUNCATE TABLE `reviews`;
 
 INSERT INTO `reviews` (`id`, `bookId`, `userId`, `rating`, `comments`) VALUES
 (2, 1, NULL, '5', 'Una verdadera obra literaria, gran inspiracion! Miau!\r\n-Lumiere'),
-(3, 2, 3, '4', 'Nos ha pasado a todos');
+(3, 2, 3, '4', 'Nos ha pasado a todos'),
+(4, 1, 5, '3', 'aaaaaaaaaaaaaaaa'),
+(5, 1, 6, '3', 'abbbbbbbbbbbb'),
+(6, 1, 3, '3', 'aacccccccc'),
+(7, 1, 5, '5', 'cddddddddddd'),
+(8, 2, 5, '3', 'aaa'),
+(9, 1, NULL, '5', 'Este es el comentario de una review de test'),
+(10, 1, NULL, '5', 'Este es el comentario de una review de test'),
+(11, 1, NULL, '5', 'Este es el comentario de una review de test'),
+(13, 1, 3, '5', 'Este es el comentario de una review de test'),
+(14, 1, 3, '5', 'Este es el comentario de una review de test'),
+(15, 1, 3, '5', 'Este es el comentario de una review de test'),
+(16, 1, 3, '1', 'Este es el comentario de una review de test');
 
 -- --------------------------------------------------------
 
@@ -210,7 +222,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
