@@ -8,7 +8,7 @@ require_once("../controller/index.php");
 $r = new Router();
 
 $r->addRoute("reviews", "GET", "ReviewsApiController", "listAll");
-$r->addRoute("reviews/:bookId", "GET", "ReviewsApiController", "listByBookId");
+$r->addRoute("books/:bookId/reviews", "GET", "ReviewsApiController", "listByBookId");
 
 $r->addRoute("review/:id", "GET", "ReviewsApiController", "getById");
 $r->addRoute("review", "POST", "ReviewsApiController", "addOne");
